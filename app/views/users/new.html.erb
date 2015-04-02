@@ -1,0 +1,20 @@
+<%= form_for :user, :html => { class: 'form-signin' }, url: users_path do |f| %>
+  <h2>Sign up</h2>
+  <div class="form-group">
+    <%= f.label :Fullname %>
+    <%= f.text_field :fullname, class: 'form-control', placeholder: 'Input fullname...' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :Email %>
+    <%= f.text_field :email, class: 'form-control', placeholder: 'Input email...' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :Password %>
+    <%= f.password_field :password, class: 'form-control', placeholder: 'Input password...' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :Confirmation %>
+    <%= f.password_field :confirmation, class: 'form-control', placeholder: 'Input Confirmation...' %>
+  </div>
+  <%= f.submit 'Sign up', class: 'btn btn-success' %>
+<% end %>
