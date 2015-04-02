@@ -1,2 +1,29 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<h2>Users</h2>
+<% if flash[:message] %>
+  <p class="bg-primary"><%= flash[:message] %></p>
+<% end %>
+<table class="table table-bordered">
+  <tr>
+    <th>#</th>
+    <th>Fullname</th>
+    <th>Email</th>
+    <th>Created</th>
+    <th>Admin</th>
+    <th>Action</th>
+  </tr>
+  <% if @users.blank? %>
+    <tr>
+      <td colspan="5">Data not found!!!</td>
+    </tr>
+  <% end %>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= link_to user.fullname, edit_user_path(user) %></td>
+      <td><%= user.email %></td>
+      <td><%= user.created_at %></td>
+      <td><%= user.status == User::ADMIN.first.to_i ? 'Yes' : 'No' %></td>
+      <td><%= link_to 'Delete', user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
