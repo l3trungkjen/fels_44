@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :words
+  resources :categories
   resources :sessions
   resources :users
   root 'index#index'

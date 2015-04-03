@@ -1,0 +1,14 @@
+<% if flash[:message] %>
+  <p class="bg-danger"><%= flash[:message] %></p>
+<% end %>
+<%= form_for @category do |f| %>
+  <div class="form-group">
+    <%= f.label :Name %>
+    <%= f.text_field :name, class: 'form-control', placeholder: 'Input name...' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :Status %>
+    <%= f.select :status, [['Active', 1], ['InActive', 0]], {}, class: 'form-control' %>
+  </div>
+  <%= f.submit 'Save', class: 'btn btn-success' %>
+<% end %>
