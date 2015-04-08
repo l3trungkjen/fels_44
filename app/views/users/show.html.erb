@@ -1,0 +1,8 @@
+<% provide :title, current_user.fullname %>
+<div class="bs-callout bs-callout-info">
+  <h4><%= current_user.fullname %></h4>
+</div>
+<p><%= gravatar_for current_user %></p>
+<p><label>Email : </label><%= current_user.email %></p>
+<p><label>Created : </label><%= current_user.created_at %></p>
+<%= link_to "Back", users_path %>

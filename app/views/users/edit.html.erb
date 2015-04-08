@@ -1,0 +1,8 @@
+<h1>Update Profile</h1>
+<% if flash[:message] %>
+  <p class="bg-primary"><%= flash[:message] %></p>
+<% end %>
+<%= form_for @user, html: {class: "form-signin"} do |f| %>
+  <%= render "fields", f: f %>
+  <%= f.submit "Save changes", class: "btn btn-success" %>
+<% end %>
