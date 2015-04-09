@@ -1,0 +1,5 @@
+<h2>Add new</h2>
+<%= form_for [:admin, @category] do |f| %>
+  <%= render "fields", f: f %>
+  <%= f.submit "Create", class: "btn btn-success" %>
+<% end %>

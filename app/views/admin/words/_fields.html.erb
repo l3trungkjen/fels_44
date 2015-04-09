@@ -1,0 +1,24 @@
+<%= render "layouts/messages", object: f.object %>
+<div class="form-group">
+  <%= f.label :Categories %>
+  <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: false}, {class: "form-control"} %>
+</div>
+<div class="form-group">
+  <%= f.label :Name %>
+  <%= f.text_field :name, class: "form-control", placeholder: "Input name..." %>
+</div>
+<div class="form-group">
+  <%= f.label :Mean %>
+  <%= f.text_field :mean, class: "form-control", placeholder: "Input mean..." %>
+</div>
+<div id="answer" class="form-group">
+  <%= f.label :Answer %>
+  <div class="controls">
+    <%= f.fields_for :answers do |answer_form| %>
+      <%= answer_form.text_field :name, class: "form-control", placeholder: "Input answer..." %>
+      <%= answer_form.select :correct, [["Incorrect", 0], ["Correct", 1]], {}, class: "form-control" %>
+      <%= answer_form.link_to_remove "Remove", class: "btn btn-danger" %>
+    <% end %>
+  </div>
+  <%= f.link_to_add "Add a answer", :answers, class: "btn btn-success" %>
+</div>
