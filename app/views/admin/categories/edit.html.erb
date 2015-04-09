@@ -1,0 +1,8 @@
+<h2>Update</h2>
+<% if flash[:message] %>
+  <p class="bg-danger"><%= flash[:message] %></p>
+<% end %>
+<%= form_for [:admin, @category] do |f| %>
+  <%= render "fields", f: f %>
+  <%= f.submit "Update", class: "btn btn-success" %>
+<% end %>

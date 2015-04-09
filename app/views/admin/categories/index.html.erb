@@ -1,0 +1,27 @@
+<h2>Categories</h2>
+<% if flash[:message] %>
+  <p class="bg-primary"><%= flash[:message] %></p>
+<% end %>
+<%= link_to "Add new", new_admin_category_path %>
+<table class="table table-bordered">
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+  <% if @categories.blank? %>
+    <tr>
+      <td colspan="5">Data not found!!!</td>
+    </tr>
+  <% end %>
+  <% @categories.each do |category| %>
+    <tr>
+      <td><%= category.id %></td>
+      <td><%= link_to category.name, edit_admin_category_path(category) %></td>
+      <td><%= category.status == Category::STATUS.first.to_i ? "InActive" : "Active" %></td>
+      <td><%= link_to "Delete", admin_category_path(category), method: :delete, data: {confirm: "Are you sure?"} %></td>
+    </tr>
+  <% end %>
+</table>
+<%= will_paginate @categories %>

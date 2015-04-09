@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
+  namespace :admin do
+    resources :categories
+    resources :words
+  end
   root 'users#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
