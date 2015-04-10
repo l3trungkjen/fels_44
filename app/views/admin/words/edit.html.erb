@@ -1,0 +1,5 @@
+<h2>Update</h2>
+<%= nested_form_for [:admin, @word] do |f| %>
+  <%= render "fields", f: f %>
+  <%= f.submit "Update", class: "btn btn-success" %>
+<% end %>

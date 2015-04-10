@@ -1,0 +1,26 @@
+<h2>Words</h2>
+<%= render "layouts/message" %>
+<%= link_to "Add new", new_admin_word_path %>
+<table class="table table-bordered">
+  <tr>
+    <th>#</th>
+    <th>Name</th>
+    <th>Mean</th>
+    <th>Category</th>
+    <th>Action</th>
+  </tr>
+  <% if @words.blank? %>
+    <tr>
+      <td colspan="5">Data not found!!!</td>
+    </tr>
+  <% end %>
+  <% @words.each do |word| %>
+    <tr>
+      <td><%= word.id %></td>
+      <td><%= link_to word.name, edit_admin_word_path(word) %></td>
+      <td><%= word.mean %></td>
+      <td><%= word.category.name %></td>
+      <td><%= link_to "Delete", admin_word_path(word), method: :delete, data: {confirm: "Are you sure?"} %></td>
+    </tr>
+  <% end %>
+</table>
