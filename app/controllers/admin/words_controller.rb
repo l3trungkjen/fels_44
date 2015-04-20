@@ -1,12 +1,12 @@
 class Admin::WordsController < ApplicationController
-  before_action :build_children, only: :new
 
   def index
     @words = Word.paginate page: params[:page], per_page: 10
   end
 
   def new
-    @word = Word.new word_params
+    @word = Word.new
+    @word.answers.build
   end
 
   def create
@@ -45,15 +45,7 @@ class Admin::WordsController < ApplicationController
 
   private
   def word_params
-    params.require(:word).permit(:category_id, :name, :mean,
-                                  answers_attributes:
-                                  [
-                                    :id, :name, :correct, :_destroy
-                                  ]
-                                )
-  end
-
-  def build_children
-    1.times {@word.answers.build}
+    params.require(:word).permit :category_id, :name, :mean,
+      answers_attributes: [:id, :name, :correct, :_destroy]
   end
 end

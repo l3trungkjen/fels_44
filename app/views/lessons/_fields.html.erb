@@ -1,0 +1,10 @@
+<%= lesson_word_fields.hidden_field :word_id  %>
+<%= lesson_word_fields.label lesson_word_fields.object.word.name %>
+<% lesson_word_fields.object.word.answers.each do |answer| %>
+  <div class="radio">
+    <%= lesson_word_fields.label :answer do %>
+      <%= lesson_word_fields.radio_button :answer_id, answer.id %>
+      <%= answer.name %>
+    <% end %>
+  </div>
+<% end %>
