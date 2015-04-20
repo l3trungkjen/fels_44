@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :categories, only: :index do
     resources :lessons, only: [:index, :new, :create, :show]
   end
+  resources :relationships, only: [:create, :destroy]
   get 'home' => 'static_pages#index'
   namespace :admin do
     root 'categories#index'

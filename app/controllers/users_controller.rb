@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :logged_in_user, except: [:show, :new]
+
   def index
     @users = User.paginate page: params[:page], per_page: 10
   end
@@ -23,6 +25,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find params[:id]
   end
 
   def update
@@ -46,8 +49,8 @@ class UsersController < ApplicationController
   end
 
   private
-    def user_params
-      params.require(:user).permit(:fullname, :email, :password, :password_confirmation)
-    end
+  def user_params
+    params.require(:user).permit :fullname, :email, :password, :password_confirmation
+  end
 
 end

@@ -5,4 +5,10 @@
 <p><%= gravatar_for current_user %></p>
 <p><label>Email : </label><%= current_user.email %></p>
 <p><label>Created : </label><%= current_user.created_at %></p>
+<section class="stats">
+  <%= render "stats" %>
+</section>
+<div class="col-md-8">
+  <%= render "follow_form" if logged_in? %>
+</div>
 <%= link_to "Back", users_path %>
