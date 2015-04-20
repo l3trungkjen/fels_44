@@ -1,0 +1,14 @@
+<% @categories.each do |category| %>
+  <div class="bs-callout bs-callout-info">
+    <h4><%= category.name %></h4>
+    <span class="category_count">You've learned
+      <% if !current_user.lessons.filter_by_category(category.id).first.blank? %>
+        <%= current_user.lessons.filter_by_category(category.id).sum :result %>
+      <% else %>
+        0
+      <% end %>
+      / <%= category.words.count %>
+    </span><br>
+    <%= link_to "Start", new_category_lesson_path(category), class: "btn" %>
+  </div>
+<% end %>

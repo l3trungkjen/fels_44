@@ -1,0 +1,21 @@
+<h1>Results</h1>
+<%= render "layouts/message" %>
+<table class="table table-bordered">
+  <tr>
+    <th>Words</th>
+    <th>Answers</th>
+    <th></th>
+  </tr>
+  <% @lesson_words.each do |lesson_word| %>
+    <tr>
+      <td><%= lesson_word.word.name %></td>
+      <% if lesson_word.answer_id.blank? %>
+        <td>...</td>
+        <td>Incorrect</td>
+      <% else %>
+          <td><%= lesson_word.answer.name %></td>
+          <td><%= lesson_word.answer.correct == 0 ? "Incorrect" : "Correct" %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,21 @@
+<h1>Words</h1>
+<% if @words.count == 0 %>
+  <h4>You have successfully completed.</h4>
+<% else %>
+  <%= form_for [:category, @lesson], html: {class: "form-signup"} do |f| %>
+    <% render "layouts/messages", object: f.object %>
+    <%= f.fields_for :lesson_words do |lesson_word_builder| %>
+      <div class="word" data-id="<%= lesson_word_builder.object.word.id %>" id="<%= "start" if lesson_word_builder.index == 0 %>">
+        <%= render "fields", lesson_word_fields: lesson_word_builder %>
+      </div>
+    <% end %>
+    <%= f.submit :Prev, class: "btn btn-success", type: :button, id: :prev %>
+    <%= f.submit :Next, class: "btn btn-success", type: :button, id: :next %>
+    <%= f.submit :Finish, class: "btn btn-success" %>
+  <% end %>
+<% end %>
+<script>
+  $(document).ready(function() {
+    $.fn.words.init();
+  });
+</script>

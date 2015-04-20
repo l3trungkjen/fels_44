@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
+  resources :categories, only: :index do
+    resources :lessons, only: [:index, :new, :create, :show]
+  end
+  get 'home' => 'static_pages#index'
   namespace :admin do
     root 'categories#index'
     resources :categories, except: :show
